@@ -1,2 +1,37 @@
-<h1>Books#create</h1>
-<p>Find me in app/views/books/create.html.erb</p>
+<table class="table table-striped" id="dynamic-table">
+  <thead>
+    <tr>
+      <th class="text-center">
+        Title
+      </th>
+      <th class="text-center">
+        Author
+      </th>
+      <th class="text-center">
+        ISBN
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="book0">
+      <td>
+        <input type="text" name="title0" placeholder="Title..." class="form-control" />
+      </td>
+      <td>
+        <input type="text" name="author0" placeholder="Author..." class="form-control" />
+      </td>
+      <td>
+        <input type="text" name="isbn0" placeholder="ISBN..." class="form-control" />
+      </td>
+    </tr>
+    <tr id="book1"></tr>
+  </tbody>
+</table>
+<p class="row">
+    <div class="col-md-3 col-md-offset-3">
+        <a id="add-row" class="btn btn-default pull-left">Add Row</a>
+    </div>
+    <div class="col-md-3">
+        <a id="delete-row" class="pull-right btn btn-default">Delete Row</a>
+    </div>
+</p>

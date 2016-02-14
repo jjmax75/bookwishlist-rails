@@ -17,13 +17,18 @@
 <body>
   <header>
     <div class="container">
-      <p>NSIS Library Book Wishlist</p>
+      <h1>NSIS Library Book Wishlist</h1>
     </div>
   </header>
   
-  <main>
+  <main class="row clearfix">
     <div class="container">
-      <%= yield %>
+      <div class="col-md-8 column table-responsive">
+        <%= yield %>
+      </div>
+      <div class="col-md-4">
+        <%= render 'partials/sidebar' %>
+      </div>
     </div>
   </main>
 
