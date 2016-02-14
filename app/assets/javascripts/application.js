@@ -14,25 +14,49 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-// http://bootsnipp.com/snippets/featured/dynamic-table-row-creation-and-deletionS
-
-$(document).ready(function() {
-  var i = 1;
-  $("#add-row").click(function() {
-    $('#book' + i).html(
-      "<td><input name='title" + i + "' type='text' placeholder='Title...' class='form-control'  /> </td><td><input  name='author" + i + "' type='text' placeholder='Author...'  class='form-control'></td><td><input name='isbn" + i + "' type='text' placeholder='ISBN...'  class='form-control'></td>");
-
-    $('#dynamic-table').append('<tr id="book' + (i + 1) + '"></tr>');
-    i++;
-  });
-  $("#delete-row").click(function() {
-    if (i > 1) {
-      $("#book" + (i - 1)).html('');
-      i--;
+$(function() {
+  var rowCount = 0;
+  
+  $('input').keypress(function(e) {
+    if (e.which === 13) {
+      // TODO - Check all inputs have been filled in
+      var title = $('.title').val();
+      var author = $('.author').val();
+      var isbn = $('.isbn').val();
+      
+      $('#dynamic-table').append(
+        '<tr><td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td class="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td></tr>'
+      );
+      
+      $('#add-book-form :input').val('');
+      
+      rowCount += 1;
+      
+      $('.row-count').html(rowCount);
+      
+      if (rowCount === 10) {
+        enoughBooks();
+      }
     }
-    else {
-      console.log('What\'s up?');
-      $("#book0 input").val('');
+  
+  });
+  
+  $('#dynamic-table').on ('click', 'td.delete', function() {
+    $(this).closest('tr').remove();
+    
+    rowCount -= 1;
+    
+    $('.row-count').html(rowCount);
+    
+    if (rowCount < 10) {
+      $('.row-count').removeClass('enough-books');
+      $('#add-book-form :input').prop('disabled', false);
     }
   });
+  
+  function enoughBooks() {
+    $('.row-count').addClass('enough-books');
+    $('#add-book-form :input').prop('disabled', true);
+  };
+  
 });

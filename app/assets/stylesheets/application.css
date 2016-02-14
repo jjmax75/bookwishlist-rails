@@ -41,3 +41,12 @@ footer {
   color: #fff;
   text-align: center;
 }
+.delete {
+ cursor: pointer;
+}
+.row-count {
+ font-weight: bold;
+}
+.enough-books {
+ color: green;
+}
