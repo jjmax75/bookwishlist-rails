@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
+  const totalBooksRequired = 10;
+  
   var rowCount = 0;
   
   $('input').keypress(function(e) {
@@ -23,6 +25,14 @@ $(function() {
       var title = $('.title').val();
       var author = $('.author').val();
       var isbn = $('.isbn').val();
+      
+      var newRow = $("#dynamic-table tbody").find('tr:hidden:first');
+      
+      newRow.show();
+      
+      newRow.find('input#books__title').val(title);
+      newRow.find('input#books__author').val(author);
+      newRow.find('input#books__isbn').val(isbn);
       
       $('#dynamic-table').append(
         '<tr><td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td class="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td></tr>'
@@ -34,29 +44,41 @@ $(function() {
       
       $('.row-count').html(rowCount);
       
-      if (rowCount === 10) {
+      if (rowCount === totalBooksRequired) {
         enoughBooks();
-      }
+      };
     }
   
   });
   
   $('#dynamic-table').on ('click', 'td.delete', function() {
-    $(this).closest('tr').remove();
+    $(this).closest('tr').hide();
+    
+    if (rowCount === totalBooksRequired) {
+      notEnoughBooks();
+    };
     
     rowCount -= 1;
     
     $('.row-count').html(rowCount);
     
-    if (rowCount < 10) {
-      $('.row-count').removeClass('enough-books');
-      $('#add-book-form :input').prop('disabled', false);
-    }
+  });
+  
+  $('#submit-button').click(function(e) {
+    e.preventDefault();
+    $("#book-choices-form").submit(); //http://stackoverflow.com/questions/618948/how-to-add-html-id-to-rails-form-tag
   });
   
   function enoughBooks() {
     $('.row-count').addClass('enough-books');
     $('#add-book-form :input').prop('disabled', true);
+    $('#submit-button').prop('disabled', false);
+  };
+  
+  function notEnoughBooks() {
+    $('.row-count').removeClass('enough-books');
+    $('#add-book-form :input').prop('disabled', false);
+    $('#submit-button').prop('disabled', true);
   };
   
 });

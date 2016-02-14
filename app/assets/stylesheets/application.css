@@ -50,3 +50,6 @@ footer {
 .enough-books {
  color: green;
 }
+table tbody tr{
+    display: none;
+}

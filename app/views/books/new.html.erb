@@ -1,0 +1,45 @@
+<table class="table table-striped" id="dynamic-table">
+  <thead>
+    <tr>
+      <th class="text-center">
+        Title
+      </th>
+      <th class="text-center">
+        Author
+      </th>
+      <th class="text-center">
+        ISBN
+      </th>
+      <th>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      </th>
+    </tr>
+    <tr id="add-book-form">
+      <td>
+        <input type="text" class="title" placeholder="Title..." class="form-control" />
+      </td>
+      <td>
+        <input type="text" class="author" placeholder="Author..." class="form-control" />
+      </td>
+      <td>
+        <input type="text" class="isbn" placeholder="ISBN..." class="form-control" />
+      </td>
+      <td>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+        <%= form_tag books_path, :id => 'book-choices-form' do %>
+            <% @library.each do |book| %>
+                <%= fields_for 'books[]', book do |b| %>
+                    <tr>
+                        <td><%= b.text_field :title, :readonly => true %></td>
+                        <td><%= b.text_field :author, :readonly => true %></td>
+                        <td><%= b.text_field :isbn, :readonly => true %></td>
+                        <td class="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+  </tbody>
+</table>
