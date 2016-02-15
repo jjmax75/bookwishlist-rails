@@ -44,8 +44,12 @@ footer {
 .delete {
  cursor: pointer;
 }
-.row-count {
+#book-count {
  font-weight: bold;
+ font-size: 5em;
+ height: 1.5em;
+ line-height: 1.5em;
+ margin: .5em 0;
 }
 .enough-books {
  color: green;

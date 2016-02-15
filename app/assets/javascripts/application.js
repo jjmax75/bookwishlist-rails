@@ -34,15 +34,11 @@ $(function() {
       newRow.find('input#books__author').val(author);
       newRow.find('input#books__isbn').val(isbn);
       
-      $('#dynamic-table').append(
-        '<tr><td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td class="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td></tr>'
-      );
-      
       $('#add-book-form :input').val('');
       
       rowCount += 1;
       
-      $('.row-count').html(rowCount);
+      $('.row-count sup').html(rowCount);
       
       if (rowCount === totalBooksRequired) {
         enoughBooks();
@@ -60,7 +56,7 @@ $(function() {
     
     rowCount -= 1;
     
-    $('.row-count').html(rowCount);
+    $('.row-count sup').html(rowCount);
     
   });
   
@@ -70,13 +66,13 @@ $(function() {
   });
   
   function enoughBooks() {
-    $('.row-count').addClass('enough-books');
+    $('#book-count').addClass('enough-books');
     $('#add-book-form :input').prop('disabled', true);
     $('#submit-button').prop('disabled', false);
   };
   
   function notEnoughBooks() {
-    $('.row-count').removeClass('enough-books');
+    $('#book-count').removeClass('enough-books');
     $('#add-book-form :input').prop('disabled', false);
     $('#submit-button').prop('disabled', true);
   };
