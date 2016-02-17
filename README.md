@@ -14,14 +14,15 @@ Basic submission ready
 Can post 10 items to DB
 
 TODO - 
-Validate all fields are filled in on each row (jQuery)
-Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way
-Google Apps login - only accounts from school domain
+- [ ] Validate all fields are filled in on each row (jQuery)
+- [ ] Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way
+- [ ] Google Apps login - only accounts from school domain
+- [ ] Student model
 Admin area
- - delete/edit books
- - export to pdf
- - view students that have submitted
-Student model
+ - [x] delete/edit books (16-2-2016 -> new branch during testing)
+ - [ ] export to pdf
+ - [ ] view students that have submitted
+
 
 Potential - 
  - Way to assign different quota for each grade
