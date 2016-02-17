@@ -54,6 +54,24 @@ footer {
 .enough-books {
  color: green;
 }
-table tbody tr{
+table#dynamic-table tbody tr{
     display: none;
+}
+#book-search-modal .modal-dialog {
+  width: 80%;
+}
+#book-details-modal .modal-dialog {
+  width: 60%;
+}
+.modal-dialog tr td:first-child {
+  width: 40%;
+}
+.modal-dialog tr td:nth-child(2) {
+  width: 30%;
+}
+.modal-dialog tr td:nth-child(3) {
+  width: 15%;
+}
+.modal-dialog tr td:last-child {
+  width: 15%;
 }

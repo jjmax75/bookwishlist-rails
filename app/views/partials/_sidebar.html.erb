@@ -1,5 +1,16 @@
 <% if params[:controller] == 'books' %>
 <div class="well">
+  <div class="input-group">
+      <input type="text" class="form-control" id="search-box" placeholder="Search for a book...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#book-search-modal" id="search-button">Go!</button>
+      </span>
+    </div>
+</div>
+<% end %>
+
+<% if params[:controller] == 'books' %>
+<div class="well">
   <h3 class="text-center">Books Chosen</h3>
   <p id="book-count" class="text-center"><span class="row-count"><sup>0</sup></span>&frasl;<sub>10</sub></p>
   <button type="button" id="submit-button" class="btn btn-lg btn-block btn-primary" disabled="true">Submit</button>

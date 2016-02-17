@@ -14,12 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+// Google API - AIzaSyAkfDpwB1QFnJzhnFAX9kriYvcJs0vHM0c
+// Add domain restrictions to Google Developer console
+
 $(function() {
   const totalBooksRequired = 2;
 
   var rowCount = 0;
 
-  $('input').keypress(function(e) {
+  $('#add-book-form input').keypress(function(e) {
     if (e.which === 13) {
       // TODO - Check all inputs have been filled in
       var title = $('.title').val();
@@ -42,7 +45,7 @@ $(function() {
 
       if (rowCount === totalBooksRequired) {
         enoughBooks();
-      };
+      }
     }
 
   });
@@ -52,7 +55,7 @@ $(function() {
 
     if (rowCount === totalBooksRequired) {
       notEnoughBooks();
-    };
+    }
 
     rowCount -= 1;
 
@@ -65,16 +68,78 @@ $(function() {
     $("#book-choices-form").submit(); //http://stackoverflow.com/questions/618948/how-to-add-html-id-to-rails-form-tag
   });
 
+  $('#search-button').click(function(e) {
+    e.preventDefault();
+    getResults($('#search-box').val());
+  });
+
   function enoughBooks() {
     $('#book-count').addClass('enough-books');
     $('#add-book-form :input').prop('disabled', true);
     $('#submit-button').prop('disabled', false);
-  };
+  }
 
   function notEnoughBooks() {
     $('#book-count').removeClass('enough-books');
     $('#add-book-form :input').prop('disabled', false);
     $('#submit-button').prop('disabled', true);
-  };
+  }
 
+  function getResults(searchTerm) {
+    $.ajax({
+      url: 'https://www.googleapis.com/books/v1/volumes',
+      dataType: 'jsonp',
+      printType: 'books',
+      maturityRating: 'NOT_MATURE',
+      data: {
+        'key': 'AIzaSyAkfDpwB1QFnJzhnFAX9kriYvcJs0vHM0c',
+        'q': searchTerm
+      },
+      success: function(data) {
+        var volumes = data.items.map(function(item) {
+          var authors = item.volumeInfo.authors ?
+            item.volumeInfo.authors.join(', ') :
+            'Unknown';
+
+          var image = item.volumeInfo.imageLinks ?
+            item.volumeInfo.imageLinks.thumbnail :
+            null;
+
+          var isbn = item.volumeInfo.industryIdentifiers ?
+            item.volumeInfo.industryIdentifiers[0].identifier :
+            '';
+
+            return (
+              {
+                title: item.volumeInfo.title,
+                authors: authors,
+                isbn: isbn,
+                volumeInfo: item.volumeInfo,
+                details: {
+                  thumbnail: image,
+                  subtitle: item.volumeInfo.subtitle || '',
+                  description: item.volumeInfo.description || ''
+                }
+              }
+          );
+        });
+        listResults(volumes);
+      }
+    });
+  }
+
+  function listResults(volumes) {
+    var volumeList = '';
+    volumes.forEach(function(volume) {
+      console.log(volume);
+      volumeList += '<tr><td>' + volume.title + '</td><td>' + volume.authors + '</td><td>' + volume.isbn + '</td><td><button class="btn btn-default btn-info" type="submit" data-toggle="modal" data-target="#book-details-modal">Details</button></td><td><button class="btn btn-default btn-success" type="submit">Select</button></td></tr>';
+    });
+
+    $('#search-results tbody').html(volumeList);
+  }
+
+  $('#search-results tr button').click(function(e) {
+    e.preventDefault();
+
+  });
 });
