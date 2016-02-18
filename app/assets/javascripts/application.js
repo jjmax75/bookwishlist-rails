@@ -114,12 +114,9 @@ $(function() {
                 title: item.volumeInfo.title,
                 authors: authors,
                 isbn: isbn,
-                volumeInfo: item.volumeInfo,
-                details: {
-                  thumbnail: image,
-                  subtitle: item.volumeInfo.subtitle || '',
-                  description: item.volumeInfo.description || ''
-                }
+                thumbnail: image,
+                subtitle: item.volumeInfo.subtitle || '',
+                description: item.volumeInfo.description || false
               }
           );
         });
@@ -131,15 +128,31 @@ $(function() {
   function listResults(volumes) {
     var volumeList = '';
     volumes.forEach(function(volume) {
-      console.log(volume);
-      volumeList += '<tr><td>' + volume.title + '</td><td>' + volume.authors + '</td><td>' + volume.isbn + '</td><td><button class="btn btn-default btn-info" type="submit" data-toggle="modal" data-target="#book-details-modal">Details</button></td><td><button class="btn btn-default btn-success" type="submit">Select</button></td></tr>';
+      var hasDescription = volume.description ? '' : 'disabled';
+      console.log(hasDescription);
+      volumeList +=
+        '<tr><td>' +
+          volume.title + '</td><td>' +
+          volume.authors + '</td><td>' +
+          volume.isbn + '</td><td>' +
+          '<button class="btn btn-info details-book" title="' + volume.title +'" data-content="' + volume.description + '" data-toggle="popover" ' + hasDescription + '>Details</button></td><td>' +
+          '<button class="btn btn-success select-book" type="submit">Select</button>' +
+        '</td></tr>';
     });
 
     $('#search-results tbody').html(volumeList);
+
+    var popoverOptions = {
+      trigger: 'focus',
+      placement: 'left'
+    };
+
+    $('[data-toggle="popover"]').popover(popoverOptions);
   }
 
-  $('#search-results tr button').click(function(e) {
+  $('#search-results').on('click', '.details-book', function(e) {
     e.preventDefault();
 
+    $(this).popover();
   });
 });
