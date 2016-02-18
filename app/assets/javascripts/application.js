@@ -18,7 +18,7 @@
 // Add domain restrictions to Google Developer console
 
 $(function() {
-  const totalBooksRequired = 2;
+  const TOTAL_BOOKS_REQUIRED = 10;
 
   var rowCount = 0;
 
@@ -43,7 +43,7 @@ $(function() {
 
       $('.row-count sup').html(rowCount);
 
-      if (rowCount === totalBooksRequired) {
+      if (rowCount === TOTAL_BOOKS_REQUIRED) {
         enoughBooks();
       }
     }
@@ -53,7 +53,7 @@ $(function() {
   $('#dynamic-table').on ('click', 'td.delete', function() {
     $(this).closest('tr').hide();
 
-    if (rowCount === totalBooksRequired) {
+    if (rowCount === TOTAL_BOOKS_REQUIRED) {
       notEnoughBooks();
     }
 
@@ -184,7 +184,7 @@ $(function() {
 
     $('.row-count sup').html(rowCount);
 
-    if (rowCount === totalBooksRequired) {
+    if (rowCount === TOTAL_BOOKS_REQUIRED) {
       enoughBooks();
     }
   });
