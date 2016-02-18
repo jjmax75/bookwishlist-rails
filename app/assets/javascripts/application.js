@@ -73,6 +73,12 @@ $(function() {
     getResults($('#search-box').val());
   });
 
+  $('#search-box').keypress(function(e) {
+    if (e.which === 13) {
+      $('#search-button').click();
+    }
+  });
+
   function enoughBooks() {
     $('#book-count').addClass('enough-books');
     $('#add-book-form :input').prop('disabled', true);
@@ -101,10 +107,6 @@ $(function() {
             item.volumeInfo.authors.join(', ') :
             'Unknown';
 
-          var image = item.volumeInfo.imageLinks ?
-            item.volumeInfo.imageLinks.thumbnail :
-            null;
-
           var isbn = item.volumeInfo.industryIdentifiers ?
             item.volumeInfo.industryIdentifiers[0].identifier :
             '';
@@ -114,8 +116,6 @@ $(function() {
                 title: item.volumeInfo.title,
                 authors: authors,
                 isbn: isbn,
-                thumbnail: image,
-                subtitle: item.volumeInfo.subtitle || '',
                 description: item.volumeInfo.description || false
               }
           );
@@ -127,15 +127,21 @@ $(function() {
 
   function listResults(volumes) {
     var volumeList = '';
+    var hasDescription = '';
+
     volumes.forEach(function(volume) {
-      var hasDescription = volume.description ? '' : 'disabled';
-      console.log(hasDescription);
+      if (volume.description) {
+        hasDescription = 'data-content="' + volume.description + '"';
+      } else {
+        hasDescription = 'disabled';
+      }
+
       volumeList +=
         '<tr><td>' +
           volume.title + '</td><td>' +
           volume.authors + '</td><td>' +
           volume.isbn + '</td><td>' +
-          '<button class="btn btn-info details-book" title="' + volume.title +'" data-content="' + volume.description + '" data-toggle="popover" ' + hasDescription + '>Details</button></td><td>' +
+          '<button class="btn btn-info details-book" title="' + volume.title + '" data-html="true" ' + hasDescription + ' data-toggle="popover">Details</button></td><td>' +
           '<button class="btn btn-success select-book" type="submit">Select</button>' +
         '</td></tr>';
     });
@@ -150,9 +156,36 @@ $(function() {
     $('[data-toggle="popover"]').popover(popoverOptions);
   }
 
+  function addBookSearch(title, author, isbn) {
+    var newRow = $("#dynamic-table tbody").find('tr:hidden:first');
+
+    newRow.show();
+
+    newRow.find('input#books__title').val(title);
+    newRow.find('input#books__author').val(author);
+    newRow.find('input#books__isbn').val(isbn);
+  }
+
   $('#search-results').on('click', '.details-book', function(e) {
     e.preventDefault();
-
     $(this).popover();
+  });
+
+  $('#search-results').on('click', '.select-book', function(e) {
+    e.preventDefault();
+    var title = $('td:first-child', $(this).parents('tr')).text();
+    var author = $('td:nth-child(2)', $(this).parents('tr')).text();
+    var isbn = $('td:nth-child(3)', $(this).parents('tr')).text();
+
+    addBookSearch(title, author, isbn);
+    $('#book-search-modal').modal('toggle');
+
+    rowCount += 1;
+
+    $('.row-count sup').html(rowCount);
+
+    if (rowCount === totalBooksRequired) {
+      enoughBooks();
+    }
   });
 });
