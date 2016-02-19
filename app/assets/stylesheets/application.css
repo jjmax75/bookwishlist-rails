@@ -75,3 +75,6 @@ table#dynamic-table tbody tr{
 .modal-dialog tr td:last-child {
   width: 15%;
 }
+input {
+  box-shadow: none;
+}

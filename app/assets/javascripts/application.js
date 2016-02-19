@@ -22,9 +22,9 @@ $(function() {
 
   var rowCount = 0;
 
-  $('#add-book-form input').keypress(function(e) {
-    if (e.which === 13) {
-      // TODO - Check all inputs have been filled in
+  $('#add-book-form').submit(function(e) {
+      e.preventDefault();
+
       var title = $('.title').val();
       var author = $('.author').val();
       var isbn = $('.isbn').val();
@@ -46,8 +46,6 @@ $(function() {
       if (rowCount === TOTAL_BOOKS_REQUIRED) {
         enoughBooks();
       }
-    }
-
   });
 
   $('#dynamic-table').on ('click', 'td.delete', function() {
@@ -65,18 +63,12 @@ $(function() {
 
   $('#submit-button').click(function(e) {
     e.preventDefault();
-    $("#book-choices-form").submit(); //http://stackoverflow.com/questions/618948/how-to-add-html-id-to-rails-form-tag
+    $("#book-choices-form").submit(); //jquery - submits a form with button outside form
   });
 
-  $('#search-button').click(function(e) {
+  $('#search-form').submit(function(e) {
     e.preventDefault();
     getResults($('#search-box').val());
-  });
-
-  $('#search-box').keypress(function(e) {
-    if (e.which === 13) {
-      $('#search-button').click();
-    }
   });
 
   function enoughBooks() {

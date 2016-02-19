@@ -1,4 +1,5 @@
-<table class="table table-striped" id="dynamic-table">
+<form id="add-book-form">
+<table class="table table-striped">
   <thead>
     <tr>
       <th class="text-center">
@@ -14,20 +15,24 @@
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
       </th>
     </tr>
-    <tr id="add-book-form">
-      <td>
-        <input type="text" class="title" placeholder="Title..." class="form-control" />
-      </td>
-      <td>
-        <input type="text" class="author" placeholder="Author..." class="form-control" />
-      </td>
-      <td>
-        <input type="text" class="isbn" placeholder="ISBN..." class="form-control" />
-      </td>
-      <td>
-      </td>
-    </tr>
+      <tr>
+          <td>
+            <input type="text" required="true" class="title" placeholder="Title..." class="form-control" />
+          </td>
+          <td>
+            <input type="text" required="true" class="author" placeholder="Author..." class="form-control" />
+          </td>
+          <td>
+            <input type="text" required="true" class="isbn" placeholder="ISBN..." class="form-control" />
+          </td>
+          <td>
+            <input type="submit" value="Add" style="display: none" />
+          </td>
+      </tr>
   </thead>
+</table>
+</form>
+  <table class="table table-striped" id="dynamic-table">
   <tbody>
         <%= form_tag books_path, :id => 'book-choices-form' do %>
             <% @library.each do |book| %>
