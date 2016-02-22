@@ -14,8 +14,8 @@ Basic submission ready
 Can post 10 items to DB
 
 TODO - 
-- [ ] Validate all fields are filled in on each row (jQuery)
-- [ ] Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way
+- [x] Validate all fields are filled in on each row (jQuery) - 19 Feb 2016 - using bootstrap ('required')
+- [x] Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way - 19 Feb 2016 - Using Google Books
 - [ ] Google Apps login - only accounts from school domain
 - [ ] Student model
 Admin area
