@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+
   ActiveAdmin.routes(self)
   get 'students/create'
 
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
   #   resources :products
   resources :books
   resources :students
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

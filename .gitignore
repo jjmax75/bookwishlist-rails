@@ -15,3 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# keys and passwords
+config/database.yml
+config/secrets.yml
+
+# Ignore application configuration
+config/application.yml
