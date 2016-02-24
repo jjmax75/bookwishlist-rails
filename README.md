@@ -9,6 +9,14 @@ The school wants students to submit a list of ten books with:
 
 The school will use this list to source new books for the library
 
+24-Feb-2016
+Almost ready to go live
+Database, Google oauth keys and rails keys are now got ignored
+You can set them by adding/editing:
+DB - config/database.yml
+Google - config/application.yml (part of Figaro)
+Rails - config/secrets.yml
+
 14-Feb-2016
 Basic submission ready
 Can post 10 items to DB
