@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :authorizations
+  has_many :books
 
   def self.new_with_session(params,session)
     if session["devise.user_attributes"]

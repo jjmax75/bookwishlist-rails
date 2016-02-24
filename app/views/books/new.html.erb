@@ -41,6 +41,7 @@
                         <td><%= b.text_field :title, :readonly => true %></td>
                         <td><%= b.text_field :author, :readonly => true %></td>
                         <td><%= b.text_field :isbn, :readonly => true %></td>
+                        <td><%= b.hidden_field :user_id, value: current_user.id, :readonly => true %></td>
                         <td class="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
                     </tr>
                 <% end %>

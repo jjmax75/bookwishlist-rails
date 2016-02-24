@@ -5,7 +5,7 @@ class BooksController < ApplicationController
       @library << Book.new
     end
   end
-  
+
   def create
     params["books"].each do |book|
       Book.create(book_params(book))
@@ -20,9 +20,9 @@ class BooksController < ApplicationController
 
   def index
   end
-  
+
   private
     def book_params(my_params)
-      my_params.permit(:title, :author, :isbn)
+      my_params.permit(:title, :author, :isbn, :user_id)
     end
 end
