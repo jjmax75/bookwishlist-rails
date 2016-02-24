@@ -18,7 +18,7 @@
 // Add domain restrictions to Google Developer console
 
 $(function() {
-  const TOTAL_BOOKS_REQUIRED = 2;
+  const TOTAL_BOOKS_REQUIRED = 10;
 
   var rowCount = 0;
 
