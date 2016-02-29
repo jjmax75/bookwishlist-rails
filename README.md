@@ -9,6 +9,14 @@ The school wants students to submit a list of ten books with:
 
 The school will use this list to source new books for the library
 
+24-Feb-2016
+Almost ready to go live
+Database, Google oauth keys and rails keys are now got ignored
+You can set them by adding/editing:
+DB - config/database.yml
+Google - config/application.yml (part of Figaro)
+Rails - config/secrets.yml
+
 14-Feb-2016
 Basic submission ready
 Can post 10 items to DB
@@ -16,12 +24,12 @@ Can post 10 items to DB
 TODO - 
 - [x] Validate all fields are filled in on each row (jQuery) - 19 Feb 2016 - using bootstrap ('required')
 - [x] Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way - 19 Feb 2016 - Using Google Books
-- [ ] Google Apps login - only accounts from school domain
-- [ ] Student model
+- [x] Google Apps login - only accounts from school domain
+- [x] User model
 Admin area
  - [x] delete/edit books (16-2-2016 -> new branch during testing)
  - [ ] export to pdf
- - [ ] view students that have submitted
+ - [ ] view users that have submitted
 
 
 Potential - 
