@@ -18,3 +18,15 @@
   <button type="button" id="submit-button" class="btn btn-lg btn-block btn-primary" disabled="true">Submit</button>
 </div>
 <% end %>
+
+<% if current_user && current_user.superuser? %>
+  <span>
+    <%= link_to('Admin', admin_books_path, :class => "btn btn-default") %>
+  </span>
+<% end %>
+
+<% if user_signed_in? %>
+  <span>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default") %>
+  </span>
+<% end %>

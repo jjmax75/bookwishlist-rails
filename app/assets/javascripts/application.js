@@ -180,4 +180,8 @@ $(function() {
       enoughBooks();
     }
   });
+
+  setTimeout(function() {
+    $('.alert').slideUp();
+  }, 2000);
 });
