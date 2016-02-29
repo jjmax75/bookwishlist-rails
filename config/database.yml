@@ -5,8 +5,10 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   pool: 5
+  encoding: utf8
+  host: localhost
   timeout: 5000
 
 development:
