@@ -21,7 +21,7 @@ Rails - config/secrets.yml
 Basic submission ready
 Can post 10 items to DB
 
-TODO - 
+TODO -
 - [x] Validate all fields are filled in on each row (jQuery) - 19 Feb 2016 - using bootstrap ('required')
 - [x] Search for book data using API (GoodReads, OpenLibrary, Amazon, etc...), populate form either way - 19 Feb 2016 - Using Google Books
 - [x] Google Apps login - only accounts from school domain
@@ -29,10 +29,10 @@ TODO -
 Admin area
  - [x] delete/edit books (16-2-2016 -> new branch during testing)
  - [ ] export to pdf
- - [ ] view users that have submitted
+ - [x] view users that have submitted
 
 
-Potential - 
+Potential -
  - Way to assign different quota for each grade
    - e.g. Grade 1 & 2 students only need to submit 3, Grade 3 & 4 submit 5, Grade 5+ submit 10
    - Also, possible to allow adding over 10 books
