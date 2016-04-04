@@ -28,7 +28,7 @@ TODO -
 - [x] User model
 Admin area
  - [x] delete/edit books (16-2-2016 -> new branch during testing)
- - [ ] export to pdf
+ - [x] export to csv
  - [x] view users that have submitted
 
 
