@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
        user.name = auth.info.name
        user.email = auth.info.email
        user.image = auth.info.image
+       user.superuser = true
        if auth.provider == "twitter"
          user.save(:validate => false)
        else
